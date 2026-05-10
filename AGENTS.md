@@ -112,6 +112,8 @@ ______________________________________________________________________
 
 - Data models: Use `Pydantic` for all data structures (config, API schemas, domain models)
 - Prefer `dataclass` only for trivial internal objects; otherwise, reach for Pydantic
+- Use `StrEnum` for fixed sets of string constants (e.g., commands)
+- Use `match` statements for dispatching on enum values or discriminated unions
 - Functional programming: pure functions, immutability, composition over inheritance
 - Avoid side effects where practical
 - Type hints: consistent and thorough throughout
