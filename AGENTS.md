@@ -6,7 +6,7 @@ ______________________________________________________________________
 
 ## Vision
 
-A bot that serves as an ever-attentive witness to tabletop RPG sessions held over Discord. It silently listens, transcribes everything said, and transforms the raw recording into organized documentation: a searchable transcript, a narrative summary, character development notes, lore discoveries, and scene imagery. The bot operates locally on a Mac Mini M4, with optional cloud LLM fallbacks for summarization.
+A bot that serves as an ever-attentive witness to tabletop RPG sessions held over Discord. It silently listens, transcribes everything said, and transforms the raw recording into organized documentation: a searchable transcript, a narrative summary, character development notes, lore discoveries, and scene imagery. The bot operates locally on your own hardware, with optional cloud LLM fallbacks for summarization.
 
 ______________________________________________________________________
 
@@ -30,7 +30,7 @@ ______________________________________________________________________
 
 ### Local-First, Cloud-Optional
 
-- All core features run locally on the Mac Mini (Whisper, pyannote-audio)
+- All core features run locally on your own hardware (Whisper, pyannote-audio)
 - Cloud services (LLM APIs, Google Docs) are opt-in extensions
 - Architecture must not depend on external services to function
 
