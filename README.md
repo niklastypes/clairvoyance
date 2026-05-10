@@ -40,25 +40,13 @@ Discord bot that records D&D/RPG sessions, transcribes them with speaker diariza
 ### 3. Run the Bot
 
 ```bash
-# Set your bot token
-export DISCORD_BOT_TOKEN="your_bot_token_here"
+# Copy the example env file and add your token
+cp .env.example .env
+
+# Edit .env and add your bot token
+# DISCORD_BOT_TOKEN=your_bot_token_here
 
 # Run the bot
-uv run clairvoyance
-```
-
-Or use a `.env` file:
-
-```bash
-# .env
-DISCORD_BOT_TOKEN=your_bot_token_here
-```
-
-```bash
-# Install python-dotenv if needed
-uv add python-dotenv
-
-# Run with dotenv loading (add to main.py: load_dotenv())
 uv run clairvoyance
 ```
 

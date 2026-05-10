@@ -4,9 +4,15 @@ from __future__ import annotations
 
 import logging
 import sys
+from pathlib import Path
+
+from dotenv import load_dotenv
 
 from clairvoyance.bot.client import BotConfig, create_bot
 from clairvoyance.config import Config
+
+# Load .env file if present
+load_dotenv(Path(__file__).parent.parent.parent / ".env")
 
 
 def main() -> None:
