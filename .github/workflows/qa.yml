@@ -1,0 +1,63 @@
+name: QA
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@v4
+      - name: Install dependencies
+        run: uv sync --extra dev
+      - name: Run pre-commit
+        run: uv run pre-commit run --all-files
+
+  type-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@v4
+      - name: Install dependencies
+        run: uv sync --extra dev
+      - name: Run mypy
+        run: uv run mypy src/
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@v4
+      - name: Install dependencies
+        run: uv sync --extra dev
+      - name: Run ruff
+        run: |
+          uv run ruff check src/
+          uv run ruff format --check src/
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@v4
+      - name: Install dependencies
+        run: uv sync --extra dev
+      - name: Run tests
+        run: uv run pytest tests/

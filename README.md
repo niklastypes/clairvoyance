@@ -45,6 +45,7 @@ uv run pre-commit auto-update
 ```
 
 Hooks include:
+
 - Conventional commit validation
 - Ruff linting and formatting
 - MyPy type checking

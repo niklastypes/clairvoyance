@@ -1,0 +1,36 @@
+name: Bump Version
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.BUMP_GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@v4
+      - name: Install dependencies
+        run: uv sync --extra dev
+      - name: Configure git
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+      - name: Bump version
+        id: bump
+        run: |
+          uv run cz bump --retry || echo "No changes to bump"
+          TAG=$(git tag --points-at HEAD)
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+      - name: Push changes
+        if: steps.bump.outputs.tag != ''
+        run: |
+          git push
+          git push --tags
