@@ -65,6 +65,20 @@ Based on Henrik Kniberg's [MVP blog post](https://blog.crisp.se/2016/01/25/henri
 
 The key question for each phase: *What is the cheapest and fastest way we can start learning?*
 
+### Test-Driven Development (TDD)
+
+We practice TDD with the red-green-refactor cycle:
+
+1. **Red** — Write a failing test that describes the desired behavior
+2. **Green** — Write minimal code to make the test pass
+3. **Refactor** — Clean up code while keeping tests green
+
+Rules:
+- Never introduce new functionality without a failing test first
+- Tests are first-class citizens, not an afterthought
+- Keep tests focused, readable, and fast
+- Use `Polyfactory` to generate realistic test data
+
 ### Roadmap (Kniberg-style Progression)
 
 | Phase   | Name        | Deliverable                      | User Value          | Learning Goal                      |
@@ -88,12 +102,15 @@ ______________________________________________________________________
 - **Packaging**: `uv`
 - **Formatting/Linting**: `ruff`
 - **Type Checking**: `ty`
-- **Type Models**: `Pydantic`
+- **Data Validation**: `Pydantic` (preferred for all data models, config, API schemas)
 - **CLI**: `typer`
 - **Testing**: `pytest` + `pytest-bdd`
+- **Test Fixtures**: `Polyfactory` (generate realistic test data)
 
 ### Code Patterns
 
+- Data models: Use `Pydantic` for all data structures (config, API schemas, domain models)
+- Prefer `dataclass` only for trivial internal objects; otherwise, reach for Pydantic
 - Functional programming: pure functions, immutability, composition over inheritance
 - Avoid side effects where practical
 - Type hints: consistent and thorough throughout
