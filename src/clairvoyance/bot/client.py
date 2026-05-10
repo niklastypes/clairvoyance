@@ -3,32 +3,30 @@
 from __future__ import annotations
 
 import logging
-from dataclasses import dataclass
 
 from discord import Activity, ActivityType, Client, Intents, Message
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class BotConfig:
+class BotConfig(BaseModel):
     """Configuration for the Discord bot."""
 
-    token: str
+    model_config = ConfigDict(frozen=True)
+
+    token: str = Field(min_length=1)
     command_prefix: str = "!"
     activity: str = "D&D sessions"
 
-    def _build_intents(self) -> Intents:
-        """Build default intents with required permissions."""
-        intents = Intents.default()
-        intents.message_content = True
-        return intents
-
-    def __post_init__(self) -> None:
-        """Validate configuration after initialization."""
-        if not self.token or not self.token.strip():
-            msg = "Bot token is required"
+    @field_validator("token")
+    @classmethod
+    def _validate_token(cls, v: str) -> str:
+        """Ensure token is not empty or whitespace."""
+        if not v or not v.strip():
+            msg = "Token cannot be empty or whitespace"
             raise ValueError(msg)
+        return v.strip()
 
 
 class Bot(Client):
@@ -47,8 +45,9 @@ class Bot(Client):
             type=ActivityType.watching,
             name=config.activity,
         )
+        intents = _build_intents()
         super().__init__(
-            intents=config._build_intents(),
+            intents=intents,
             activity=activity,
         )
 
@@ -69,6 +68,13 @@ class Bot(Client):
         from clairvoyance.bot.commands import handle_hello
 
         await handle_hello(self, message)
+
+
+def _build_intents() -> Intents:
+    """Build default intents with required permissions."""
+    intents = Intents.default()
+    intents.message_content = True
+    return intents
 
 
 def create_bot(config: BotConfig) -> Bot:
