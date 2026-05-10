@@ -1,0 +1,57 @@
+default_stages: [pre-commit, manual]
+
+default_install_hook_types:
+-   pre-commit
+-   commit-msg
+-   pre-push
+
+repos:
+-   repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v4.4.0
+    hooks:
+    -   id: conventional-pre-commit
+        stages: [commit-msg]
+        args: [build, bump, chore, ci, docs, feat, fix, hotfix, infr, merge,
+              perf, refactor, style, revert, test]
+
+-   repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
+    rev: v0.9.0
+    hooks:
+    -   id: pre-commit-update
+        stages: [pre-push]
+        args: [--exclude, mdformat]
+
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+    -   id: check-ast
+        language_version: python3.13
+    -   id: check-merge-conflict
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.19.1
+    hooks:
+    -   id: mypy
+        args: [--ignore-missing-imports, --install-types, --non-interactive,
+              --disallow-untyped-defs]
+        language_version: python3.13
+
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.6
+    hooks:
+    -   id: ruff
+        args: [--fix]
+    -   id: ruff-format
+
+-   repo: https://github.com/hukkin/mdformat
+    rev: 0.7.17
+    hooks:
+    -   id: mdformat
+        additional_dependencies:
+        -   mdformat-gfm
+        -   mdformat-black
+        -   mdformat-admon
+        -   mdformat-frontmatter
+        args: [--number]
