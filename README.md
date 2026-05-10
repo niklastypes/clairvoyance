@@ -25,17 +25,28 @@ Discord bot that records D&D/RPG sessions, transcribes them with speaker diariza
 
 ### 2. Invite the Bot to Your Server
 
-1. Go to **OAuth2 > URL Generator** in the left sidebar
-2. Select scopes:
-   - ✅ `bot`
+> ⚠️ **Important:** Make sure to select BOTH scopes below. If only `applications.commands` is selected, the bot will not be added to your server!
+
+1. Go to **Installation** in the left sidebar
+2. In the **Default Install Settings**, select **BOTH** scopes for **Guild Install**:
+   - ✅ `bot` ← **Required!** (don't skip this one)
    - ✅ `applications.commands`
-3. For permissions, select:
-   - ✅ **Send Messages**
-   - ✅ **Read Message History**
-   - ✅ **Connect** (for voice)
-   - ✅ **Speak** (for voice)
-4. Copy the generated URL and paste it in your browser
-5. Select your Discord server and authorize
+3. For **Permissions**, select:
+   - ✅ **Send Messages** (required for bot to reply)
+   - ✅ **Read Message History** (required for bot to see messages)
+   - ✅ **Connect** (for voice - future)
+   - ✅ **Speak** (for voice - future)
+4. Copy the **Discord Provided Link** under **Install Link** and paste it in your browser
+5. Select your Discord server and click **Authorize**
+
+#### Troubleshooting Invite Issues
+
+If the bot doesn't appear in your server:
+
+- Make sure **Public Bot** is ON in Bot settings
+- Make sure **Guild Install** is selected in Installation settings
+- Ensure you selected **both** `bot` and `applications.commands` scopes
+- Remove and re-invite the bot if needed
 
 ### 3. Run the Bot
 
@@ -49,6 +60,16 @@ cp .env.example .env
 # Run the bot
 uv run clairvoyance
 ```
+
+### 4. Test the Bot
+
+In any Discord text channel the bot can access, type:
+
+```
+!hello
+```
+
+The bot should respond with a greeting!
 
 ## Commands
 
