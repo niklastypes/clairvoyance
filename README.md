@@ -106,6 +106,6 @@ docker compose up
 
 MIT
 
----
+______________________________________________________________________
 
 Built with ❤️ using uv, discord.py, and Whisper.

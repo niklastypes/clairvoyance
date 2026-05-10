@@ -65,18 +65,17 @@ Based on Henrik Kniberg's [MVP blog post](https://blog.crisp.se/2016/01/25/henri
 
 The key question for each phase: *What is the cheapest and fastest way we can start learning?*
 
-
 ### Roadmap (Kniberg-style Progression)
 
-| Phase | Name | Deliverable | User Value | Learning Goal |
-|-------|------|-------------|------------|---------------|
-| **MVP** | Bus Ticket | Bot responds to `!hello` command | Proof bot works | Discord API auth, command handling |
-| **+1** | Skateboard | Voice join/leave commands | Bot joins VC | Discord voice connections |
-| **+2** | Scooter | Audio recording to files | Session captured | Audio capture per user |
-| **+3** | Bicycle | Basic transcription (.txt) | Searchable text | Whisper integration |
-| **+4** | Motorcycle | Full transcript (.md + speakers) | Diarized transcript | pyannote diarization |
-| **+5** | Car | AI summaries & D&D features | Narrative summary | LLM integration |
-| **+6** | Convertible | Full feature set | Complete experience | Google Docs, scene generation |
+| Phase   | Name        | Deliverable                      | User Value          | Learning Goal                      |
+| ------- | ----------- | -------------------------------- | ------------------- | ---------------------------------- |
+| **MVP** | Bus Ticket  | Bot responds to `!hello` command | Proof bot works     | Discord API auth, command handling |
+| **+1**  | Skateboard  | Voice join/leave commands        | Bot joins VC        | Discord voice connections          |
+| **+2**  | Scooter     | Audio recording to files         | Session captured    | Audio capture per user             |
+| **+3**  | Bicycle     | Basic transcription (.txt)       | Searchable text     | Whisper integration                |
+| **+4**  | Motorcycle  | Full transcript (.md + speakers) | Diarized transcript | pyannote diarization               |
+| **+5**  | Car         | AI summaries & D&D features      | Narrative summary   | LLM integration                    |
+| **+6**  | Convertible | Full feature set                 | Complete experience | Google Docs, scene generation      |
 
 **Note**: We may discover better paths along the way. The "car" we end up with may differ from the original vision based on real user feedback.
 
