@@ -65,15 +65,23 @@ class Bot(Client):
         Args:
             message: The received message.
         """
-        from clairvoyance.bot.commands import handle_hello
+        from clairvoyance.bot.commands import handle_hello, handle_join, handle_leave
 
-        await handle_hello(self, message)
+        content = message.content.strip().lower()
+
+        if content == "!hello":
+            await handle_hello(self, message)
+        elif content == "!join":
+            await handle_join(self, message)
+        elif content == "!leave":
+            await handle_leave(self, message)
 
 
 def _build_intents() -> Intents:
     """Build default intents with required permissions."""
     intents = Intents.default()
     intents.message_content = True
+    intents.voice_states = True
     return intents
 
 
