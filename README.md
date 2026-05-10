@@ -12,6 +12,64 @@ Discord bot that records D&D/RPG sessions, transcribes them with speaker diariza
 - Timestamped markdown transcripts
 - AI-powered session summaries (future)
 
+## Quick Start
+
+### 1. Create a Discord Bot
+
+1. Go to [Discord Developer Portal](https://discord.com/developers/applications)
+2. Click **New Application** and name it (e.g., "Clairvoyance")
+3. In the left sidebar, click **Bot**
+4. Click **Reset Token** and copy your bot token (keep it secret!)
+5. Under **Privileged Gateway Intents**, enable:
+   - ✅ **Message Content Intent** (required for commands)
+
+### 2. Invite the Bot to Your Server
+
+1. Go to **OAuth2 > URL Generator** in the left sidebar
+2. Select scopes:
+   - ✅ `bot`
+   - ✅ `applications.commands`
+3. For permissions, select:
+   - ✅ **Send Messages**
+   - ✅ **Read Message History**
+   - ✅ **Connect** (for voice)
+   - ✅ **Speak** (for voice)
+4. Copy the generated URL and paste it in your browser
+5. Select your Discord server and authorize
+
+### 3. Run the Bot
+
+```bash
+# Set your bot token
+export DISCORD_BOT_TOKEN="your_bot_token_here"
+
+# Run the bot
+uv run clairvoyance
+```
+
+Or use a `.env` file:
+
+```bash
+# .env
+DISCORD_BOT_TOKEN=your_bot_token_here
+```
+
+```bash
+# Install python-dotenv if needed
+uv add python-dotenv
+
+# Run with dotenv loading (add to main.py: load_dotenv())
+uv run clairvoyance
+```
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `!hello` | Check if the bot is responsive |
+
+More commands coming in future releases!
+
 ## Development
 
 ### Prerequisites
