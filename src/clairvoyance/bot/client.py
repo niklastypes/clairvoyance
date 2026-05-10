@@ -65,16 +65,19 @@ class Bot(Client):
         Args:
             message: The received message.
         """
-        from clairvoyance.bot.commands import handle_hello, handle_join, handle_leave
+        from clairvoyance.bot.commands import Command, handle_hello, handle_join, handle_leave
 
-        content = message.content.strip().lower()
+        command = Command.from_value(message.content)
 
-        if content == "!hello":
-            await handle_hello(self, message)
-        elif content == "!join":
-            await handle_join(self, message)
-        elif content == "!leave":
-            await handle_leave(self, message)
+        match command:
+            case Command.HELLO:
+                await handle_hello(self, message)
+            case Command.JOIN:
+                await handle_join(self, message)
+            case Command.LEAVE:
+                await handle_leave(self, message)
+            case _:
+                pass  # Unknown command, ignore
 
 
 def _build_intents() -> Intents:
