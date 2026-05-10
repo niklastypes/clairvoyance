@@ -110,10 +110,15 @@ ______________________________________________________________________
 ## Current State
 
 **Phase 0**: Project initialization ✅
-
+**Phase MVP**: Bot responds to `!hello` command ✅
 - [x] Repository created
 - [x] MVP methodology & roadmap documented
-- [ ] Discord bot account setup (pending user action)
-- [ ] Environment configuration
+- [x] Discord bot client with config validation
+- [x] `!hello` command handler with tests
+- [x] CLI entry point (`clairvoyance` command)
 
-**Upcoming**: Phase MVP — Command-only bot with `!hello` command
+**Pending user action**:
+- [ ] Create Discord bot account and obtain token
+- [ ] Set `DISCORD_BOT_TOKEN` environment variable
+
+**Upcoming**: Phase +1 (Skateboard) — Voice join/leave commands
