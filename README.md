@@ -105,3 +105,7 @@ docker compose up
 ## License
 
 MIT
+
+---
+
+Built with ❤️ using uv, discord.py, and Whisper.
