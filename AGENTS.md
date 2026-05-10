@@ -54,6 +54,32 @@ ______________________________________________________________________
 5. Output: .md transcript with speaker labels
 6. Optional: upload to Google Docs, post notification to Discord
 
+### Development Methodology
+
+Based on Henrik Kniberg's [MVP blog post](https://blog.crisp.se/2016/01/25/henrikkniberg/making-sense-of-mvp), we follow an iterative approach where:
+
+- **Each iteration is independently usable** (not useless partial pieces like a car tire)
+- **Each iteration provides learning** to inform the next step
+- **We deliver early** to get real feedback from users
+- **We stay flexible** - the final product may differ from the original vision
+
+The key question for each phase: *What is the cheapest and fastest way we can start learning?*
+
+
+### Roadmap (Kniberg-style Progression)
+
+| Phase | Name | Deliverable | User Value | Learning Goal |
+|-------|------|-------------|------------|---------------|
+| **MVP** | Bus Ticket | Bot responds to `!hello` command | Proof bot works | Discord API auth, command handling |
+| **+1** | Skateboard | Voice join/leave commands | Bot joins VC | Discord voice connections |
+| **+2** | Scooter | Audio recording to files | Session captured | Audio capture per user |
+| **+3** | Bicycle | Basic transcription (.txt) | Searchable text | Whisper integration |
+| **+4** | Motorcycle | Full transcript (.md + speakers) | Diarized transcript | pyannote diarization |
+| **+5** | Car | AI summaries & D&D features | Narrative summary | LLM integration |
+| **+6** | Convertible | Full feature set | Complete experience | Google Docs, scene generation |
+
+**Note**: We may discover better paths along the way. The "car" we end up with may differ from the original vision based on real user feedback.
+
 ______________________________________________________________________
 
 ## Coding Principles
@@ -84,10 +110,11 @@ ______________________________________________________________________
 
 ## Current State
 
-**Phase 0**: Project initialization
+**Phase 0**: Project initialization ✅
 
 - [x] Repository created
+- [x] MVP methodology & roadmap documented
 - [ ] Discord bot account setup (pending user action)
 - [ ] Environment configuration
 
-**Upcoming**: Phase 1 — Bot foundation with voice join/leave commands
+**Upcoming**: Phase MVP — Command-only bot with `!hello` command
