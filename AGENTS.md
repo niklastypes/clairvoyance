@@ -106,6 +106,7 @@ ______________________________________________________________________
 - **CLI**: `typer`
 - **Testing**: `pytest` + `pytest-bdd`
 - **Test Fixtures**: `Polyfactory` (generate realistic test data)
+- **Documentation**: `docs/architecture.md` (keep up-to-date with latest changes)
 
 ### Code Patterns
 
@@ -129,16 +130,21 @@ ______________________________________________________________________
 
 **Phase 0**: Project initialization ✅
 **Phase MVP**: Bot responds to `!hello` command ✅
+**Phase +1 (Skateboard)**: Voice join/leave commands ✅
 
 - [x] Repository created
 - [x] MVP methodology & roadmap documented
 - [x] Discord bot client with config validation
 - [x] `!hello` command handler with tests
 - [x] CLI entry point (`clairvoyance` command)
+- [x] `!join` command — bot joins author's voice channel
+- [x] `!leave` command — bot disconnects from voice channel
+- [x] Voice state intent enabled
+- [x] Tests for voice commands
 
 **Pending user action**:
 
 - [ ] Create Discord bot account and obtain token
 - [ ] Set `DISCORD_BOT_TOKEN` environment variable
 
-**Upcoming**: Phase +1 (Skateboard) — Voice join/leave commands
+**Upcoming**: Phase +2 (Scooter) — Audio recording to files
