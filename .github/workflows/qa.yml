@@ -17,7 +17,7 @@ jobs:
           python-version: "3.13"
       - uses: astral-sh/setup-uv@v4
       - name: Install dependencies
-        run: uv sync --extra dev
+        run: uv sync --extra dev --extra bot
       - name: Run pre-commit
         run: uv run pre-commit run --all-files
 
@@ -30,7 +30,7 @@ jobs:
           python-version: "3.13"
       - uses: astral-sh/setup-uv@v4
       - name: Install dependencies
-        run: uv sync --extra dev
+        run: uv sync --extra dev --extra bot
       - name: Run mypy
         run: uv run mypy src/
 
@@ -43,7 +43,7 @@ jobs:
           python-version: "3.13"
       - uses: astral-sh/setup-uv@v4
       - name: Install dependencies
-        run: uv sync --extra dev
+        run: uv sync --extra dev --extra bot
       - name: Run ruff
         run: |
           uv run ruff check src/
@@ -58,6 +58,6 @@ jobs:
           python-version: "3.13"
       - uses: astral-sh/setup-uv@v4
       - name: Install dependencies
-        run: uv sync --extra dev
+        run: uv sync --extra dev --extra bot
       - name: Run tests
         run: uv run pytest tests/
