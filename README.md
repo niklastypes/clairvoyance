@@ -52,8 +52,8 @@ uv run clairvoyance
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
+| Command  | Description                    |
+| -------- | ------------------------------ |
 | `!hello` | Check if the bot is responsive |
 
 More commands coming in future releases!
