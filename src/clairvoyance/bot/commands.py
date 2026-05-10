@@ -28,5 +28,5 @@ async def handle_hello(bot: Bot, message: Message) -> None:
         return
 
     if message.content.strip().lower() == "!hello":
-        logger.info("Hello command received from %s", message.author)
+        logger.info(f"Hello command received from {message.author}")
         await message.reply(HELLO_RESPONSE, mention_author=True)

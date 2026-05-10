@@ -26,7 +26,7 @@ def main() -> None:
     try:
         config = Config.from_env()
     except ValueError as e:
-        logging.error("Configuration error: %s", e)
+        logging.error(f"Configuration error: {e}")
         sys.exit(1)
 
     bot_config = BotConfig(token=config.discord_token)

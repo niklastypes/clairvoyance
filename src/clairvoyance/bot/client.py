@@ -58,11 +58,7 @@ class Bot(Client):
 
     async def on_ready(self) -> None:
         """Called when bot successfully connects to Discord."""
-        logger.info(
-            "Bot connected as %s (ID: %s)",
-            self.user,
-            self.user.id if self.user else "unknown",
-        )
+        logger.info(f"Bot connected as {self.user} (ID: {self.user.id if self.user else 'unknown'})")
 
     async def on_message(self, message: Message) -> None:
         """Handle incoming messages.

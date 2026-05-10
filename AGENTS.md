@@ -98,6 +98,7 @@ ______________________________________________________________________
 - Avoid side effects where practical
 - Type hints: consistent and thorough throughout
 - No placeholder types (`Any`, `# type: ignore`)
+- Use Python f-strings for logging and print statements (e.g., `logger.info(f"...{var}")` not `logger.info("...%s", var)`)
 
 ### Version Control
 
