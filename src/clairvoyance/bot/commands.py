@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from enum import StrEnum
 from typing import TYPE_CHECKING, Union
 
 from discord import Message, VoiceChannel
@@ -11,6 +12,30 @@ if TYPE_CHECKING:
     from discord import Member
 
 logger = logging.getLogger(__name__)
+
+
+class Command(StrEnum):
+    """Available bot commands."""
+
+    HELLO = "!hello"
+    JOIN = "!join"
+    LEAVE = "!leave"
+
+    @classmethod
+    def from_value(cls, value: str) -> Union[Command, None]:
+        """Look up a command by its string value.
+
+        Args:
+            value: The command string (e.g., "!hello")
+
+        Returns:
+            The Command enum member or None if not found.
+        """
+        normalized = value.strip().lower()
+        for cmd in cls:
+            if cmd.value == normalized:
+                return cmd
+        return None
 
 HELLO_RESPONSE = "Hello! I'm Clairvoyance, your D&D session witness. 🎲"
 JOIN_RESPONSE = "Joining your voice channel! 🎙️"
@@ -31,7 +56,7 @@ async def handle_hello(bot: object, message: Message) -> None:
     if message.author.bot:
         return
 
-    if message.content.strip().lower() == "!hello":
+    if Command.from_value(message.content) == Command.HELLO:
         logger.info(f"Hello command received from {message.author}")
         await message.reply(HELLO_RESPONSE, mention_author=True)
 
@@ -51,7 +76,7 @@ async def handle_join(bot: object, message: Message) -> Union[str, None]:
     if message.author.bot:
         return None
 
-    if message.content.strip().lower() != "!join":
+    if Command.from_value(message.content) != Command.JOIN:
         return None
 
     author: Member = message.author
@@ -84,7 +109,7 @@ async def handle_leave(bot: object, message: Message) -> Union[str, None]:
     if message.author.bot:
         return None
 
-    if message.content.strip().lower() != "!leave":
+    if Command.from_value(message.content) != Command.LEAVE:
         return None
 
     author = message.author
