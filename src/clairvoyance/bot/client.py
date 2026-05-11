@@ -65,9 +65,12 @@ class Bot(Client):
         Args:
             message: The received message.
         """
+        logger.info(f"Received message: {message.content!r} from {message.author}")
+
         from clairvoyance.bot.commands import Command, handle_hello, handle_join, handle_leave
 
         command = Command.from_value(message.content)
+        logger.info(f"Parsed command: {command}")
 
         match command:
             case Command.HELLO:
