@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import re
 from enum import StrEnum
 from typing import TYPE_CHECKING, Union
 
@@ -13,29 +14,40 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+# Pattern to match bot mentions: <@!123> or <@123> followed by optional whitespace
+_MENTION_PATTERN = re.compile(r"^<@!?\d+>\s*")
+
 
 class Command(StrEnum):
     """Available bot commands."""
 
-    HELLO = "!hello"
-    JOIN = "!join"
-    LEAVE = "!leave"
+    HELLO = "hello"  # Can be invoked as "!hello" or "hello"
+    JOIN = "join"  # Can be invoked as "!join" or "join"
+    LEAVE = "leave"  # Can be invoked as "!leave" or "leave"
 
     @classmethod
     def from_value(cls, value: str) -> Union[Command, None]:
         """Look up a command by its string value.
 
+        Handles formats:
+        - Bot mention format: "<@123> hello", "<@!123> join"
+        - Direct commands: "hello", "join", "leave"
+
         Args:
-            value: The command string (e.g., "!hello")
+            value: The message content (e.g., "hello" or "<@123> join")
 
         Returns:
             The Command enum member or None if not found.
         """
         normalized = value.strip().lower()
+        # Strip bot mention prefix (e.g., "<@123456> ")
+        normalized = _MENTION_PATTERN.sub("", normalized)
+        # Now look for the command
         for cmd in cls:
-            if cmd.value == normalized:
+            if normalized == cmd.value:
                 return cmd
         return None
+
 
 HELLO_RESPONSE = "Hello! I'm Clairvoyance, your D&D session witness. 🎲"
 JOIN_RESPONSE = "Joining your voice channel! 🎙️"
