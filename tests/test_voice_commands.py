@@ -42,7 +42,7 @@ class MockTextMessage:
 
     def __init__(
         self,
-        content: str = "!join",
+        content: str = "join",
         author_bot: bool = False,
     ) -> None:
         self.content = content
@@ -141,7 +141,7 @@ class TestHandleJoin:
         self, bot: MockBot, mock_message: MockTextMessage
     ) -> None:
         """Test that non-!join messages are ignored."""
-        mock_message.content = "!hello"
+        mock_message.content = "hello"
 
         result = await handle_join(bot, mock_message)
 
@@ -174,7 +174,7 @@ class TestHandleLeave:
         # Arrange - bot is in a voice channel
         mock_vc = MockVoiceClient(bot=bot)
         bot.voice_clients = [mock_vc]
-        mock_message.content = "!leave"
+        mock_message.content = "leave"
 
         # Act
         result = await handle_leave(bot, mock_message)
@@ -189,7 +189,7 @@ class TestHandleLeave:
     ) -> None:
         """Test that bot ignores !leave from other bots."""
         mock_message.author.bot = True
-        mock_message.content = "!leave"
+        mock_message.content = "leave"
 
         result = await handle_leave(bot, mock_message)
 
@@ -200,7 +200,7 @@ class TestHandleLeave:
         self, bot: MockBot, mock_message: MockTextMessage
     ) -> None:
         """Test that non-!leave messages are ignored."""
-        mock_message.content = "!hello"
+        mock_message.content = "hello"
 
         result = await handle_leave(bot, mock_message)
 
@@ -211,7 +211,7 @@ class TestHandleLeave:
         self, bot: MockBot, mock_message: MockTextMessage
     ) -> None:
         """Test that !leave returns error when bot is not in a voice channel."""
-        mock_message.content = "!leave"
+        mock_message.content = "leave"
 
         result = await handle_leave(bot, mock_message)
 

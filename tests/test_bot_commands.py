@@ -25,7 +25,7 @@ class MockMessage:
 
     def __init__(
         self,
-        content: str = "!hello",
+        content: str = "hello",
         author_bot: bool = False,
         author_name: str = "TestUser",
         author_id: int = 12345,
@@ -78,8 +78,8 @@ class TestHandleHello:
 
     @pytest.mark.asyncio
     async def test_handles_case_insensitive_hello(self, bot: Bot) -> None:
-        """Test that !Hello and !HELLO are also handled."""
-        message = MockMessage(content="!Hello")
+        """Test that Hello is also handled."""
+        message = MockMessage(content="Hello")
         await handle_hello(bot, message)
 
         message.reply.assert_called_once()
