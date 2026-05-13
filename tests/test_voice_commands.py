@@ -74,9 +74,13 @@ class MockVoiceState:
 class MockVoiceClient:
     """Mock Discord voice client."""
 
+    def __init__(self, bot: MockBot | None = None) -> None:
+        self._bot = bot
+
     async def disconnect(self) -> None:
         """Mock disconnect method."""
-        pass
+        if self._bot is not None:
+            self._bot.voice_clients = []
 
 
 class MockBot:
@@ -84,7 +88,7 @@ class MockBot:
 
     def __init__(self, config: object) -> None:
         self.config = config
-        self.voice: MockVoiceClient | None = None
+        self.voice_clients: list[MockVoiceClient] = []
 
     @property
     def user(self) -> MockMember:
@@ -168,15 +172,16 @@ class TestHandleLeave:
     ) -> None:
         """Test that !leave command causes bot to leave current voice channel."""
         # Arrange - bot is in a voice channel
-        bot.voice = MockVoiceClient()
+        mock_vc = MockVoiceClient(bot=bot)
+        bot.voice_clients = [mock_vc]
         mock_message.content = "!leave"
 
         # Act
         result = await handle_leave(bot, mock_message)
 
-        # Assert - no error returned, bot left VC
+        # Assert - no error returned
         assert result is None
-        assert bot.voice is None
+        assert len(bot.voice_clients) == 0
 
     @pytest.mark.asyncio
     async def test_leave_ignores_bot_messages(

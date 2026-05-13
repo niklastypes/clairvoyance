@@ -114,14 +114,14 @@ async def handle_leave(bot: object, message: Message) -> Union[str, None]:
 
     author = message.author
 
-    if bot.voice is None:
+    voice_client = getattr(bot, "voice_clients", [])
+    if not voice_client:
         logger.info(f"Leave command from {author} failed: not in VC")
         await message.reply(LEAVE_NO_VC_ERROR, mention_author=True)
         return LEAVE_NO_VC_ERROR
 
     logger.info(f"Leave command from {author}, disconnecting")
-    await bot.voice.disconnect()
-    bot.voice = None
+    await voice_client[0].disconnect()
     await message.reply(LEAVE_RESPONSE, mention_author=True)
 
     return None
