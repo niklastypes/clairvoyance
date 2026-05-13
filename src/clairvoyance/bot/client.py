@@ -57,7 +57,7 @@ class Bot(Client):
 
     async def on_ready(self) -> None:
         """Called when bot successfully connects to Discord."""
-        logger.info(f"Bot connected as {self.user} (ID: {self.user.id if self.user else 'unknown'})")
+        logger.info("Bot connected as %s (ID: %s)", self.user, self.user.id if self.user else "unknown")
 
     async def on_message(self, message: Message) -> None:
         """Handle incoming messages.
@@ -70,10 +70,10 @@ class Bot(Client):
         command = Command.from_value(message.content)
 
         if message.author.bot:
-            logger.debug(f"Bot's own message, ignoring: {message.content!r}")
+            logger.debug("Bot's own message, ignoring: %r", message.content)
         else:
-            logger.debug(f"Received message: {message.content!r} from {message.author}")
-            logger.debug(f"Parsed command: {command}")
+            logger.debug("Received message: %r from %s", message.content, message.author)
+            logger.debug("Parsed command: %s", command)
 
             match command:
                 case Command.HELLO:

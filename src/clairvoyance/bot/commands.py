@@ -69,7 +69,7 @@ async def handle_hello(bot: object, message: Message) -> None:
         return
 
     if Command.from_value(message.content) == Command.HELLO:
-        logger.info(f"Hello command received from {message.author}")
+        logger.info("Hello command received from %s", message.author)
         await message.reply(HELLO_RESPONSE, mention_author=True)
 
 
@@ -94,12 +94,12 @@ async def handle_join(bot: object, message: Message) -> Union[str, None]:
     author: Member = message.author
 
     if author.voice is None or author.voice.channel is None:
-        logger.info(f"Join command from {author} failed: not in VC")
+        logger.info("Join command from %s failed: not in VC", author)
         await message.reply(JOIN_NO_VC_ERROR, mention_author=True)
         return JOIN_NO_VC_ERROR
 
     channel: VoiceChannel = author.voice.channel
-    logger.info(f"Join command from {author}, connecting to {channel.name}")
+    logger.info("Join command from %s, connecting to %s", author, channel.name)
     await channel.connect()
     await message.reply(JOIN_RESPONSE, mention_author=True)
 
@@ -128,11 +128,11 @@ async def handle_leave(bot: object, message: Message) -> Union[str, None]:
 
     voice_client = getattr(bot, "voice_clients", [])
     if not voice_client:
-        logger.info(f"Leave command from {author} failed: not in VC")
+        logger.info("Leave command from %s failed: not in VC", author)
         await message.reply(LEAVE_NO_VC_ERROR, mention_author=True)
         return LEAVE_NO_VC_ERROR
 
-    logger.info(f"Leave command from {author}, disconnecting")
+    logger.info("Leave command from %s, disconnecting", author)
     await voice_client[0].disconnect()
     await message.reply(LEAVE_RESPONSE, mention_author=True)
 
