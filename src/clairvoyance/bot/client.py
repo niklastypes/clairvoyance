@@ -57,7 +57,11 @@ class Bot(Client):
 
     async def on_ready(self) -> None:
         """Called when bot successfully connects to Discord."""
-        logger.info("Bot connected as %s (ID: %s)", self.user, self.user.id if self.user else "unknown")
+        logger.info(
+            "Bot connected as %s (ID: %s)",
+            self.user,
+            self.user.id if self.user else "unknown",
+        )
 
     async def on_message(self, message: Message) -> None:
         """Handle incoming messages.
@@ -65,14 +69,21 @@ class Bot(Client):
         Args:
             message: The received message.
         """
-        from clairvoyance.bot.commands import Command, handle_hello, handle_join, handle_leave
+        from clairvoyance.bot.commands import (
+            Command,
+            handle_hello,
+            handle_join,
+            handle_leave,
+        )
 
         command = Command.from_value(message.content)
 
         if message.author.bot:
             logger.debug("Bot's own message, ignoring: %r", message.content)
         else:
-            logger.debug("Received message: %r from %s", message.content, message.author)
+            logger.debug(
+                "Received message: %r from %s", message.content, message.author
+            )
             logger.debug("Parsed command: %s", command)
 
             match command:

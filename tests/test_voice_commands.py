@@ -51,10 +51,6 @@ class MockTextMessage:
         self.channel = MockTextChannel()
         self.reply = AsyncMock()
 
-    async def reply(self, content: str, **kwargs: object) -> None:
-        """Mock reply method."""
-        self.reply(content)
-
 
 class MockTextChannel:
     """Mock Discord text channel."""
@@ -160,7 +156,7 @@ class TestHandleJoin:
 
         # Assert - error returned
         assert result == JOIN_NO_VC_ERROR
-        mock_message.reply.assert_called()
+        mock_message.reply.assert_called_once()
 
 
 class TestHandleLeave:

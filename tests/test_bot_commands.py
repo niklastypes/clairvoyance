@@ -14,7 +14,9 @@ from tests.factories import BotConfigFactory
 class MockAuthor:
     """Mock Discord message author."""
 
-    def __init__(self, bot: bool = False, name: str = "TestUser", user_id: int = 12345) -> None:
+    def __init__(
+        self, bot: bool = False, name: str = "TestUser", user_id: int = 12345
+    ) -> None:
         self.bot = bot
         self.name = name
         self.id = user_id
@@ -52,14 +54,18 @@ class TestHandleHello:
     """Tests for handle_hello command."""
 
     @pytest.mark.asyncio
-    async def test_replies_with_hello_message(self, bot: Bot, mock_message: MockMessage) -> None:
+    async def test_replies_with_hello_message(
+        self, bot: Bot, mock_message: MockMessage
+    ) -> None:
         """Test that !hello command replies with greeting."""
         await handle_hello(bot, mock_message)
 
         mock_message.reply.assert_called_once_with(HELLO_RESPONSE, mention_author=True)
 
     @pytest.mark.asyncio
-    async def test_ignores_bot_messages(self, bot: Bot, mock_message: MockMessage) -> None:
+    async def test_ignores_bot_messages(
+        self, bot: Bot, mock_message: MockMessage
+    ) -> None:
         """Test that bot ignores messages from other bots."""
         mock_message.author.bot = True
 
@@ -68,7 +74,9 @@ class TestHandleHello:
         mock_message.reply.assert_not_called()
 
     @pytest.mark.asyncio
-    async def test_ignores_non_hello_commands(self, bot: Bot, mock_message: MockMessage) -> None:
+    async def test_ignores_non_hello_commands(
+        self, bot: Bot, mock_message: MockMessage
+    ) -> None:
         """Test that non-!hello messages are ignored."""
         mock_message.content = "!other_command"
 

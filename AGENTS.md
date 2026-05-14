@@ -74,6 +74,7 @@ We practice TDD with the red-green-refactor cycle:
 3. **Refactor** — Clean up code while keeping tests green
 
 Rules:
+
 - Never introduce new functionality without a failing test first
 - Tests are first-class citizens, not an afterthought
 - Keep tests focused, readable, and fast
