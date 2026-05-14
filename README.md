@@ -63,21 +63,21 @@ uv run clairvoyance
 
 ### 4. Test the Bot
 
-In any Discord text channel the bot can access, type:
+In any Discord text channel the bot can access, use:
 
-```
-!hello
-```
+| Command               | Description                    |
+| --------------------- | ------------------------------ |
+| `@Clairvoyance hello` | Check if the bot is responsive |
+| `@Clairvoyance join`  | Bot joins your voice channel   |
+| `@Clairvoyance leave` | Bot leaves the voice channel   |
 
-The bot should respond with a greeting!
+Or without mentioning:
 
-## Commands
-
-| Command  | Description                    |
-| -------- | ------------------------------ |
-| `!hello` | Check if the bot is responsive |
-
-More commands coming in future releases!
+| Command | Description                    |
+| ------- | ------------------------------ |
+| `hello` | Check if the bot is responsive |
+| `join`  | Bot joins your voice channel   |
+| `leave` | Bot leaves the voice channel   |
 
 ## Development
 

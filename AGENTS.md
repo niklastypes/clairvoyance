@@ -139,16 +139,14 @@ ______________________________________________________________________
 - [x] Repository created
 - [x] MVP methodology & roadmap documented
 - [x] Discord bot client with config validation
-- [x] `!hello` command handler with tests
-- [x] CLI entry point (`clairvoyance` command)
-- [x] `!join` command — bot joins author's voice channel
-- [x] `!leave` command — bot disconnects from voice channel
+- [x] `hello` command — bot responds with greeting (via @mention or direct)
+- [x] `join` command — bot joins author's voice channel (via @mention or direct)
+- [x] `leave` command — bot disconnects from voice channel (via @mention or direct)
 - [x] Voice state intent enabled
 - [x] Tests for voice commands
 
 **Pending user action**:
 
-- [ ] Create Discord bot account and obtain token
-- [ ] Set `DISCORD_BOT_TOKEN` environment variable
+- [ ] Test voice recording in Phase +2
 
 **Upcoming**: Phase +2 (Scooter) — Audio recording to files
