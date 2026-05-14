@@ -17,16 +17,18 @@ graph TD
     subgraph Bot["Bot"]
         Client["discord.py Client"]
         subgraph Commands["Commands"]
-            Hello["handle_hello()<br/>!hello"]
-            Join["handle_join()<br/>!join"]
-            Leave["handle_leave()<br/>!leave"]
+            Hello["handle_hello()<br/>hello"]
+            Join["handle_join()<br/>join"]
+            Leave["handle_leave()<br/>leave"]
         end
+        Command["Command<br/>(StrEnum)"]
     end
 
     API -->|"on_message"| Client
-    Client --> Hello
-    Client --> Join
-    Client --> Leave
+    Client --> Command
+    Command --> Hello
+    Command --> Join
+    Command --> Leave
     Join -->|"connect()"| VoiceVC["Voice Client"]
     Leave -->|"disconnect()"| VoiceVC
 
@@ -34,12 +36,20 @@ graph TD
     VoiceChannel -->|"audio"| VoiceVC
 ```
 
+### Commands
+
+Commands can be invoked via:
+
+- **Bot mention**: `@Clairvoyance join`, `@Clairvoyance leave`, `@Clairvoyance hello`
+- **Direct**: `join`, `leave`, `hello` (no `!` prefix)
+
 ### Concepts
 
 | Concept        | Responsibility                                       |
 | -------------- | ---------------------------------------------------- |
 | `Bot`          | Manages Discord connection, intents, message routing |
 | `Config`       | Loads environment config (`DISCORD_BOT_TOKEN`)       |
+| `Command`      | StrEnum for command parsing (supports @mentions)     |
 | `handle_hello` | Responds with greeting                               |
 | `handle_join`  | Connects to user's voice channel                     |
 | `handle_leave` | Disconnects from voice channel                       |
@@ -85,7 +95,7 @@ graph TD
     Formatter --> Summarizer
     Summarizer --> Summary
 
-    Messages -->|"!start / !stop"| Bot
+    Messages -->|"join / leave"| Bot
     Transcript -->|"upload"| Messages
     Summary -->|"post"| Messages
 ```
