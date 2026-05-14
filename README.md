@@ -1,6 +1,6 @@
 # 🔮 Clairvoyance
 
-*Cast to create an invisible magical sensor within a Discord voice channel that listens to adventurers and chronicles their tales.*
+*Cast [Clairvoyance](https://www.dndbeyond.com/spells/2028-clairvoyance) to create an invisible magical sensor within a Discord voice channel that listens to adventurers and chronicles their tales.*
 
 Discord bot that records D&D/RPG sessions, transcribes them with speaker diarization, and generates AI-powered session summaries.
 
